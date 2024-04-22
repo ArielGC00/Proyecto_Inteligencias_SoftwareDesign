@@ -1,0 +1,67 @@
+/* Estilos específicos para el layout de la página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .user-info img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Hacer la imagen redonda */
+            margin-right: 20px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para el formulario de registrar nueva temática */
+        #tematicaForm {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+            text-align: left; /* Alinear contenido a la izquierda */
+        }
+
+        /* Estilos para el botón del formulario */
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Estilos para el enlace de inicio */
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 20px;
+            display: block; /* Mostrar como bloque para separarlo del resto del contenido */
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }

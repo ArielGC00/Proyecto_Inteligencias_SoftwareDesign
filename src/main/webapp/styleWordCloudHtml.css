@@ -1,0 +1,43 @@
+/* Estilos generales para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    padding: 20px;
+    text-align: center; /* Centrar el contenido */
+}
+
+/* Estilos para el encabezado h2 */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilos para la imagen */
+img {
+    max-width: 100%; /* Ajustar la imagen al contenedor */
+    height: auto; /* Mantener la proporción de aspecto */
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    margin-bottom: 20px;
+}
+
+/* Estilos para el párrafo */
+p {
+    color: #777;
+    font-style: italic;
+}
+
+/* Estilos para el botón */
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
