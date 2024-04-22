@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class ChatGPT {
-  private String key = "sk-proj-4DNOUvgUqBTOEBY2v6qPT3BlbkFJGbS1Trj02erwoaoDIn1O";
+  private String key = "sk-proj-1NU3axPNVeuwPeCvLTQtT3BlbkFJzah6Rv8AUSXYdhOyE6RZ";
   
   public ChatGPT(){
       
