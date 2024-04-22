@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class Sentimiento {
-  private static String key = "sk-proj-4DNOUvgUqBTOEBY2v6qPT3BlbkFJGbS1Trj02erwoaoDIn1O";
+  private static String key = "sk-proj-1NU3axPNVeuwPeCvLTQtT3BlbkFJzah6Rv8AUSXYdhOyE6RZ";
 
   public static String generarSentimiento(String pTexto) {
     String url = "https://api.openai.com/v1/chat/completions";
