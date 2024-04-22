@@ -80,28 +80,7 @@ public class DAOTematica implements IDAOTematica{
             return false; // Registro fallido
         }
     }
-    
-    public static void main(String[] args){
-      System.out.println("Hola mundo");
-      DAOTematica daoTematica=new DAOTematica();
-    String nombreTematica = "Tema de prueba";
-    String descripcionTematica = "Descripción de prueba";
-    String fotoTematica = "ruta/a/imagen.jpg";
-    ArrayList<String> textosMostrados = new ArrayList<>();
-    textosMostrados.add("Texto 1");
-    textosMostrados.add("Texto 2");
-    ArrayList<String> textos = new ArrayList<>();
-    textos.add("Texto A");
-    textos.add("Texto B");
-    String idUsuario = "id_de_usuario_prueba";
-
-    boolean resultado = daoTematica.registrarTematica(nombreTematica, descripcionTematica, fotoTematica, textosMostrados, textos, idUsuario);
-
-  }
-
-
-
-    
+      
     @Override
     public void actualizarTematicaData(ArrayList<String> textosMostrados, ArrayList<String> textos) {
         tematicaData.put("textosMostrados", textosMostrados);
