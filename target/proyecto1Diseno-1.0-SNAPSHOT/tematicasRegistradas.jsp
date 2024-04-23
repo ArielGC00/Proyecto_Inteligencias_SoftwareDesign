@@ -12,7 +12,7 @@
 </head>
 <body>
     <% String nombre = (String) request.getSession().getAttribute("nombreUsuario"); %>
-    <h1>Tematicas registradas por <%= nombre %></h1>
+    <h1>Funcionalidades</h1>
 
     <%-- Obtener la lista de temáticas registradas --%>
     <% List<String> tematicas = (List<String>) request.getSession().getAttribute("nombresTematicas"); %>
@@ -21,7 +21,7 @@
     <%-- Crear un formulario para seleccionar una temática --%>
     <form action="SvMostrarTextosTematica" method="POST">
         <label for="tematicasSelect">Selecciona una temática:</label>
-        <select id="tematicasSelect" name="tematicaSeleccionada">
+        <select id="tematicasSelect" name="tematicaSeleccionada" required>
             <option value="" disabled selected>Selecciona una temática</option>
             <%-- Iterar sobre la lista de temáticas y agregar opciones --%>
                 <% for (int i = 0; i < tematicas.size(); i++) { %>
@@ -59,7 +59,7 @@
                             <td><%= i %></td>
                             <td><%= entry.getValue() %></td>
                             <td>
-                                <input type="radio" name="textoSeleccionado" value="<%= entry.getKey() %>">
+                                <input type="radio" name="textoSeleccionado" value="<%= entry.getKey() %>" required>
                             </td>
                         </tr>
                         <% i++; %>
@@ -124,6 +124,12 @@
                             Generar WordCloud
                         </button>
                     </form>
+                    <%-- Mostrar mensaje de error si está presente --%>
+                    <% String mensajeError = (String) request.getAttribute("mensajeError"); %>
+                    <% if (mensajeError != null && !mensajeError.isEmpty()) { %>
+                        <div><%= mensajeError %></div>
+                    <% } %>
+                    
                     <form action="SvCorreoPdf" memthod="GET">
                         <button type="submit">
                             Generar pdf
@@ -138,8 +144,12 @@
                 <% } %> 
             
         <% } %>
-        
-    <a href="registro_exitoso.jsp">Volver</a><!-- Enlace para volver a la página anterior -->
     <a href="registrarTexto.jsp"><button type="button">Registrar nuevo texto</button></a>
+    <form action="SvCache" memthod="GET">
+        <button type="submit">
+            Volver
+        </button>
+    </form>
+    
 </body>
 </html>

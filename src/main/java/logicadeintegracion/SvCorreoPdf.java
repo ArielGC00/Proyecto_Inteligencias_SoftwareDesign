@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logicadenegocios.Usuario;
+import logicadevalidaciones.ValidacionFuncionalidad;
 import logicaserviciosexternos.Correo;
 import logicaserviciosexternos.Pdf;
 
@@ -47,6 +49,14 @@ public class SvCorreoPdf extends HttpServlet {
         String analisisIdea = (String) request.getSession().getAttribute("opinionIdea");
         String analisisPalabrasClave = (String) request.getSession().getAttribute("opinionPalabras");
         
+        // Verificar que ninguno de los atributos adicionales sea null utilizando la clase ValidacionFuncionalidad
+        if (!ValidacionFuncionalidad.validarAtributos(sentimiento, ideaPrincipal, palabrasClave, analisisIdea, analisisPalabrasClave)) {
+            // Si alguno de los atributos adicionales es null, enviar un mensaje de error
+            request.setAttribute("mensajeError", "ERROR: Asegúrese de ejecutar todas las funcionalidades antes de generar el pdf.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("tematicasRegistradas.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
         
         Pdf pdf=new Pdf();
         pdf.crearHtml(nombreUsuario,cedula,correoUsuario,telefonoUsuario,ideaPrincipal,texto,sentimiento,analisisIdea,analisisPalabrasClave,null,palabrasClave,fecha);

@@ -2,8 +2,8 @@
 package logicadeintegracion;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logicadeaccesoadatos.DAOUsuario;
 import logicadenegocios.Usuario;
+import logicadevalidaciones.ValidacionUsuario;
 
 /**
  *
@@ -54,7 +55,7 @@ public class SvUsuario extends HttpServlet {
         this.cedula = request.getParameter("cedula");
         DAOUsuario daoUsuario=new DAOUsuario();
         ArrayList<String> datosUsuario=daoUsuario.obtenerUsuarioPorCedula(cedula);
-        if (!datosUsuario.isEmpty()) {
+        if (ValidacionUsuario.validarCedula(cedula)) {
             // Extraer los datos del ArrayList
             String id = datosUsuario.get(0);
             nombreCompleto = datosUsuario.get(1);
@@ -74,12 +75,13 @@ public class SvUsuario extends HttpServlet {
             session.setAttribute("fotoUsuario", fotoUsuario);
             
             response.sendRedirect("AutenticacionHtml.jsp");
-
             
+
         } else {
             // No se encontró un usuario con la cédula especificada
-            // Redirigir a una página de error o realizar otra acción
-            response.sendRedirect("index.jsp");
+            request.setAttribute("mensajeError", "Usuario no encontrado, intente de nuevo.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request, response);
         }
     }
 

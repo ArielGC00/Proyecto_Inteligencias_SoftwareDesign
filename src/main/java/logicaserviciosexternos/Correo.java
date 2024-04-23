@@ -12,6 +12,7 @@ public class Correo {
         // Configuración de las propiedades del servidor SMTP
         String host = "smtp.gmail.com";
         String usuario = "jojoar04@gmail.com"; 
+        
         String contraseña = "bidn dxoq prdt ylwz"; 
         // Destinatario y asunto del correo
         String asunto = "Este es el texto y el resultado de sus respectivas funcionalidades";

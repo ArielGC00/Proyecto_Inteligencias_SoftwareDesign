@@ -21,13 +21,19 @@
     <h2>Registrar Nueva Temática:</h2>
     <form id="tematicaForm" action="SvTematica" method="POST" enctype="multipart/form-data">
         <label>Nombre:</label>
-        <input type="text" name="nombreTematica"><br><br>
+        <input type="text" name="nombreTematica" required><br><br>
         <label>Descripción:</label><br>
-        <textarea name="descripcionTematica" rows="4" cols="50"></textarea><br><br>
+        <textarea name="descripcionTematica" required rows="4" cols="50"></textarea><br><br>
         <label>Imagen:</label>
-        <input type="file" name="fotoTematica" accept="image/*"><br><br>
+        <input type="file" name="fotoTematica" required accept="image/*"><br><br>
         <button type="submit">Registrar Temática</button>
     </form>
+    <%-- Mostrar mensaje de error si está presente --%>
+    <% String mensajeError = (String) request.getAttribute("mensajeError"); %>
+    <% if (mensajeError != null && !mensajeError.isEmpty()) { %>
+        <div><%= mensajeError %></div>
+    <% } %>
+    
     
     <form action="SvTematica" memthod="GET">
         <button type="submit">

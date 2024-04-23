@@ -66,5 +66,7 @@
             <img src="imagenes/<%= usuario.get(4) %>" alt="Foto de Usuario">
         </div>
     <% } %>
+    
+    <a href="registro_exitoso.jsp">Volver</a><!-- Enlace para volver a la página anterior -->
 </body>
 </html>

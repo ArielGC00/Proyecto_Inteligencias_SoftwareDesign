@@ -6,6 +6,7 @@ package logicadeintegracion;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import logicadeaccesoadatos.DAOUsuario;
 import logicadenegocios.Usuario;
-import logicavalidacionentrada.TwoFactoAuth;
+import logicadevalidaciones.TwoFactoAuth;
+import logicadevalidaciones.ValidarCodigo;
 
 /**
  *
@@ -44,30 +46,16 @@ public class SvTwoFactorAuth extends HttpServlet {
         HttpSession session = request.getSession();
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         String idUsuario=usuario.getId();
-        if(validarCodigo(codigo,idUsuario)){
+        if(ValidarCodigo.validarCodigo(codigo,idUsuario)){
             response.sendRedirect("registro_exitoso.jsp");
         }else{
-            response.sendRedirect("AutenticacionHtml.jsp");
+            request.setAttribute("mensajeError", "El código proporcionado no es correcto, intente de nuevo");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("AutenticacionHtml.jsp");
+            dispatcher.forward(request, response);
         }
         
     }
-    private boolean validarCodigo(String pCodigo,String pId){
-        TwoFactoAuth secretKey=new TwoFactoAuth();
-        DAOUsuario daoUsuario=new DAOUsuario();
-        
-        String keyGoogle=daoUsuario.consultarKeyTwoFactorAuth(pId);
-        
-        String tempCodigo=secretKey.getCodigo(keyGoogle);
-        
-        
-        if(tempCodigo.equals(pCodigo)){
-            return true;
-        }else{
-            return false;
-        }
-        
-    }
-
+    
     /**
      * Returns a short description of the servlet.
      *

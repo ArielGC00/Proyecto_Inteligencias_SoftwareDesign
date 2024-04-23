@@ -58,7 +58,11 @@
 </head>
 <body>
     <h1>Inicio de sesión</h1>
-
+<%-- Mostrar mensaje de error si está presente --%>
+    <% String mensajeError = (String) request.getAttribute("mensajeError"); %>
+    <% if (mensajeError != null && !mensajeError.isEmpty()) { %>
+        <div><%= mensajeError %></div>
+    <% } %>
     <!-- Formulario con un campo para ingresar la cédula -->
     <form action="SvUsuario" method="POST">
         <label for="cedula">Ingrese el número de cédula:</label>

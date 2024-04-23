@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 
 import javax.servlet.annotation.WebServlet;
@@ -85,7 +86,7 @@ public class SvTematica extends HttpServlet {
         if (ServletFileUpload.isMultipartContent(request)) {
             try {
                 List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-
+                
                 for (FileItem item : items) {
                     if (item.isFormField()) {
                         if (item.getFieldName().equals("nombreTematica")) {
@@ -99,6 +100,16 @@ public class SvTematica extends HttpServlet {
                         // Construir la ruta completa del archivo
                         String filePath = jsonDirectory + File.separator + fileName;
 
+                        // Verificar si el archivo ya existe en el directorio
+                        File existingFile = new File(filePath);
+                        if (existingFile.exists()) {
+                            // Si el archivo ya existe, mostrar un mensaje de error y redirigir a una página de error
+                            request.setAttribute("mensajeError", "La imagen seleccionada ya fue utilizada, seleccione una diferente.");
+                            RequestDispatcher dispatcher = request.getRequestDispatcher("registro_exitoso.jsp");
+                            dispatcher.forward(request, response);
+                            return; // Salir del método doPost() para evitar que se guarde la temática
+                        }
+                        
                         // Guardar el archivo en el directorio
                         File uploadedFile = new File(filePath);
                         item.write(uploadedFile);

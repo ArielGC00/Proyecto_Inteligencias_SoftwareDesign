@@ -79,6 +79,11 @@
     </style>
     </head>
     <body>
+        <%-- Mostrar mensaje de error si está presente --%>
+    <% String mensajeError = (String) request.getAttribute("mensajeError"); %>
+    <% if (mensajeError != null && !mensajeError.isEmpty()) { %>
+        <div><%= mensajeError %></div>
+    <% } %>
         <form action="SvTwoFactorAuth" method="POST">
             <!-- Campo para ingresar la cédula -->
             <label for="cedula">Ingrese el código númerico que le aparece en Google Authenticator:</label>

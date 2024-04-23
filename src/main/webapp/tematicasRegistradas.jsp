@@ -21,7 +21,7 @@
     <%-- Crear un formulario para seleccionar una temática --%>
     <form action="SvMostrarTextosTematica" method="POST">
         <label for="tematicasSelect">Selecciona una temática:</label>
-        <select id="tematicasSelect" name="tematicaSeleccionada">
+        <select id="tematicasSelect" name="tematicaSeleccionada" required>
             <option value="" disabled selected>Selecciona una temática</option>
             <%-- Iterar sobre la lista de temáticas y agregar opciones --%>
                 <% for (int i = 0; i < tematicas.size(); i++) { %>
@@ -59,7 +59,7 @@
                             <td><%= i %></td>
                             <td><%= entry.getValue() %></td>
                             <td>
-                                <input type="radio" name="textoSeleccionado" value="<%= entry.getKey() %>">
+                                <input type="radio" name="textoSeleccionado" value="<%= entry.getKey() %>" required>
                             </td>
                         </tr>
                         <% i++; %>
@@ -124,6 +124,12 @@
                             Generar WordCloud
                         </button>
                     </form>
+                    <%-- Mostrar mensaje de error si está presente --%>
+                    <% String mensajeError = (String) request.getAttribute("mensajeError"); %>
+                    <% if (mensajeError != null && !mensajeError.isEmpty()) { %>
+                        <div><%= mensajeError %></div>
+                    <% } %>
+                    
                     <form action="SvCorreoPdf" memthod="GET">
                         <button type="submit">
                             Generar pdf

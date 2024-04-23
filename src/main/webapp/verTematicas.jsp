@@ -58,5 +58,7 @@
             <img src="src/classes/<%= listFotoTematicas.get(i) %>" alt="Foto de temática">
         </div>
     <% } %>
+    
+    <a href="registro_exitoso.jsp">Volver</a><!-- Enlace para volver a la página anterior -->
 </body>
 </html>

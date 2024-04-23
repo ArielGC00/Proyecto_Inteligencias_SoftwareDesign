@@ -14,9 +14,11 @@ logicadeintegracion\SvTematica.class
 logicadeaccesoadatos\DAOTexto$2.class
 logicadenegocios\IUsuario.class
 logicadeintegracion\SvProcesarTextoTematica.class
+logicadevalidaciones\ValidarCodigo.class
 logicadeaccesoadatos\DAOTematica$2.class
 logicadenegocios\ITematica.class
 com\ariel\proyecto1diseno\resources\JakartaEE8Resource.class
+logicadevalidaciones\ValidacionUsuario.class
 logicadenegocios\Tematica.class
 com\ariel\proyecto1diseno\JakartaRestConfiguration.class
 logicadevalidaciones\ValidacionNumeroTelefono.class
@@ -31,6 +33,7 @@ logicaserviciosexternos\Correo.class
 logicadeintegracion\SvPalabrasClave.class
 logicadevalidaciones\IValidarNumeroTelefonico.class
 logicadeintegracion\SvWordCloud.class
+logicadevalidaciones\ValidacionFuncionalidad.class
 logicadeaccesoadatos\DAOUsuario.class
 logicaserviciosexternos\GuardarTxt.class
 logicaserviciosexternos\Pdf.class
@@ -46,8 +49,9 @@ logicaserviciosexternos\TextoToSpeech1.class
 logicadeintegracion\SvAudio.class
 logicadeaccesoadatos\DAOUsuario$2.class
 logicadeaccesoadatos\DAOTexto.class
-logicavalidacionentrada\TwoFactoAuth.class
+logicadevalidaciones\TwoFactoAuth.class
 logicadeaccesoadatos\IDAOUsuario.class
+logicadeintegracion\SvCache.class
 logicadeintegraciondeia\ChatGPT.class
 logicadeintegracion\SvMostrarTextosTematica.class
 logicadeaccesoadatos\DAOTematica$1.class
