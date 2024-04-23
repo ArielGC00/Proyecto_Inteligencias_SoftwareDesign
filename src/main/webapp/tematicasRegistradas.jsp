@@ -12,7 +12,7 @@
 </head>
 <body>
     <% String nombre = (String) request.getSession().getAttribute("nombreUsuario"); %>
-    <h1>Tematicas registradas por <%= nombre %></h1>
+    <h1>Funcionalidades</h1>
 
     <%-- Obtener la lista de temáticas registradas --%>
     <% List<String> tematicas = (List<String>) request.getSession().getAttribute("nombresTematicas"); %>
@@ -138,8 +138,12 @@
                 <% } %> 
             
         <% } %>
-        
-    <a href="registro_exitoso.jsp">Volver</a><!-- Enlace para volver a la página anterior -->
     <a href="registrarTexto.jsp"><button type="button">Registrar nuevo texto</button></a>
+    <form action="SvCache" memthod="GET">
+        <button type="submit">
+            Volver
+        </button>
+    </form>
+    
 </body>
 </html>
