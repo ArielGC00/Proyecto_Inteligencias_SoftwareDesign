@@ -70,7 +70,7 @@ public class TextToSpeech1 {
       Player player = new Player(inputStream);
       player.play();
     } catch (JavaLayerException ex) {
-      Logger.getLogger(TextToSpeech.class.getName()).log(Level.SEVERE, null, ex);
+      Logger.getLogger(TextToSpeech1.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
   public static void main(String[] args){
