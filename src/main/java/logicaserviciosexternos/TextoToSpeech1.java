@@ -1,100 +1,60 @@
-
 package logicaserviciosexternos;
 
-
-import com.ibm.cloud.sdk.core.security.IamAuthenticator;
-import com.ibm.watson.text_to_speech.v1.TextToSpeech;
-import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.DataLine;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
-public class TextoToSpeech1 {
-    
-  public static void hablar(String pTexto){
-    IamAuthenticator authenticator = new IamAuthenticator("lv_y3MfXyccr8_-h0DCoYv_yUXXLRDQGHtl1iw8asdG0");
-    TextToSpeech textToSpeech = new TextToSpeech(authenticator);
-    textToSpeech.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/5837d746-9e90-4f97-a2d5-0eec27c58639");
-    int idioma_id = Traductor.detectarIdioma(pTexto);
-    if(idioma_id == 0){
-      try {
-        SynthesizeOptions synthesizeOptions =
-          new SynthesizeOptions.Builder()
-            .text(pTexto)
-            .accept("audio/wav")
-            .voice("es-LA_SofiaVoice")
-            .build();
-        InputStream bufferedInputStream;
-        try (InputStream inputStream = textToSpeech.synthesize(synthesizeOptions).execute().getResult()) {
-          bufferedInputStream = new BufferedInputStream(inputStream);
-          crear(bufferedInputStream);
-        }
-        bufferedInputStream.close();
-      } catch (IOException e) {
-        e.printStackTrace();
+
+public class TextToSpeech1 {
+  private static final String apiKey = "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";
+  
+  public static void text_to_speech(String texto){
+    try {
+      // Realizar la solicitud HTTP para obtener el audio
+      URL url = new URL("https://api.openai.com/v1/audio/speech");
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+      connection.setRequestMethod("POST");
+      connection.setRequestProperty("Content-Type", "application/json");
+      connection.setRequestProperty("Authorization", "Bearer " + apiKey);
+      connection.setDoOutput(true);
+
+      String postData = "{\"model\":\"tts-1\",\"voice\":\"alloy\",\"input\":\"" + texto + "\"}";
+      byte[] postDataBytes = postData.getBytes(StandardCharsets.UTF_8);
+
+      OutputStream outputStream = connection.getOutputStream();
+      outputStream.write(postDataBytes);
+      outputStream.flush();
+
+      if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+          // Obtener el flujo de entrada del audio de la respuesta HTTP
+          InputStream inputStream = connection.getInputStream();
+
+          // Reproducir el audio directamente desde el flujo de entrada
+          reproducirAudio(inputStream);
+      } else {
+          System.out.println("Error: " + connection.getResponseCode() + " - " + connection.getResponseMessage());
       }
-    } else if(idioma_id == 1){
-      try {
-        SynthesizeOptions synthesizeOptions =
-          new SynthesizeOptions.Builder()
-            .text(pTexto)
-            .accept("audio/wav")
-            .voice("en-US_AllisonExpressive")
-            .build();
-        InputStream bufferedInputStream;
-        try (InputStream inputStream = textToSpeech.synthesize(synthesizeOptions).execute().getResult()) {
-          bufferedInputStream = new BufferedInputStream(inputStream);
-          crear(bufferedInputStream);
-        }
-        bufferedInputStream.close();
-      } catch (IOException e) {
+
+      connection.disconnect();
+    } catch (IOException e) {
         e.printStackTrace();
-      }
+    }
+  }
+
+  private static void reproducirAudio(InputStream inputStream) {
+    try {
+      Player player = new Player(inputStream);
+      player.play();
+    } catch (JavaLayerException ex) {
+      Logger.getLogger(TextToSpeech.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
   
-  public static void main(String[] args){
-      System.out.println("Hola mundo");
-    hablar("Exploring the vast cosmos, scientists seek answers to cosmic mysteries through powerful telescopes and satellites.");
-  }
-    
-  private static void crear(InputStream inputStream) {
-    AudioInputStream audioStream = null;
-    try {
-      audioStream = AudioSystem.getAudioInputStream(inputStream);
-      AudioFormat format = audioStream.getFormat();
-      DataLine.Info info = new DataLine.Info(SourceDataLine.class, format);
-      SourceDataLine line = (SourceDataLine) AudioSystem.getLine(info);
-      line.open(format);
-      line.start();
-      byte[] buffer = new byte[2048];
-      int length;
-      while ((length = inputStream.read(buffer)) > 0) {
-        if (length % 2 != 0) {
-          buffer[length] = 0;
-          length++;
-        }
-        line.write(buffer, 0, length);
-      } line.drain();
-      line.close();
-    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
-      Logger.getLogger(TextoToSpeech1.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-      try {
-        audioStream.close();
-      } catch (IOException ex) {
-        Logger.getLogger(TextoToSpeech1.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    }
-  }
 }
-
