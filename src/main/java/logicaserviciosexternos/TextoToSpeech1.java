@@ -73,7 +73,4 @@ public class TextToSpeech1 {
       Logger.getLogger(TextToSpeech1.class.getName()).log(Level.SEVERE, null, ex);
     }
   }
-  public static void main(String[] args){
-    text_to_speech("hola me llamo felipe, mucho gusto!");
-  }
 }
