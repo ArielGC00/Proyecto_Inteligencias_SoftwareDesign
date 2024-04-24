@@ -136,11 +136,13 @@
                         </button>
                     </form> 
                     
-                    <form action="SvAudio" memthod="GET">
+                    <button onclick="reproducirAudio()">Reproducir</button>
+    
+                    <!--  <form action="SvAudio" memthod="GET">
                         <button type="submit">
                             Generar Audio
                         </button>
-                    </form> 
+                    </form> -->
                 <% } %> 
             
         <% } %>
@@ -150,6 +152,11 @@
             Volver
         </button>
     </form>
-    
+<script>
+        function reproducirAudio() {
+            var audio = new Audio("SvAudio"); // Reemplazar "ruta_al_servlet" con la URL de tu servlet
+            audio.play();
+        }
+    </script>
 </body>
 </html>
