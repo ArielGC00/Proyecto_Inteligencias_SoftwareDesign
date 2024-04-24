@@ -31,6 +31,6 @@
         </form>
         <a href="registro_exitoso.jsp">Registrar nueva temática</a>
             
-        <a href="tematicasRegistradas.jsp">Volver</a><!-- Enlace para volver a la página anterior -->
+        <a href="tematicasRegistradas.jsp">Realizar funcionalidades</a><!-- Enlace para volver a la página anterior -->
     </body>
 </html>
