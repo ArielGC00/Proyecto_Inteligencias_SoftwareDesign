@@ -16,25 +16,8 @@
     <img src="imagenes/<%= foto %>" alt="Foto de Usuario" style="width: 300px; height: 350px;">
     
     
-    <!-- Otros contenidos de la página de registro exitoso -->
-
-    <h2>Registrar Nueva Temática:</h2>
-    <form id="tematicaForm" action="SvTematica" method="POST" enctype="multipart/form-data">
-        <label>Nombre:</label>
-        <input type="text" name="nombreTematica" required><br><br>
-        <label>Descripción:</label><br>
-        <textarea name="descripcionTematica" required rows="4" cols="50"></textarea><br><br>
-        <label>Imagen:</label>
-        <input type="file" name="fotoTematica" required accept="image/*"><br><br>
-        <button type="submit">Registrar Temática</button>
-    </form>
-    <%-- Mostrar mensaje de error si está presente --%>
-    <% String mensajeError = (String) request.getAttribute("mensajeError"); %>
-    <% if (mensajeError != null && !mensajeError.isEmpty()) { %>
-        <div><%= mensajeError %></div>
-    <% } %>
     
-    
+    <a href="registroTematicasHtml.jsp"><button type="button">Registrar temática</button></a>
     <form action="SvTematica" memthod="GET">
         <button type="submit">
            Realizar funcionalidades
