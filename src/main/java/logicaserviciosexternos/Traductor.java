@@ -33,7 +33,7 @@ public class Traductor {
 
 
   public static String traducirTexto(String pTexto) {
-    String key="sk-proj-1NU3axPNVeuwPeCvLTQtT3BlbkFJzah6Rv8AUSXYdhOyE6RZ";
+    String key="sk-proj-q4Chv08pOs5IwY8XQAPDT3BlbkFJTsGQX8r0N0oHejha4A3r";
     String url = "https://api.openai.com/v1/chat/completions";
     String model = "gpt-3.5-turbo";
     try {
