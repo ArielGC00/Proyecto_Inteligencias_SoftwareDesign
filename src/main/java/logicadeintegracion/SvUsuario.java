@@ -36,13 +36,10 @@ public class SvUsuario extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("usuario", usuario);
+        
         String nombreCompletoUsario=usuario.getNombre();
         String fotoRegistradaUsuario=usuario.getFotoUsuario();
-            
-
-            // Agregar el nombre del usuario como un atributo a la solicitud
-            
-        
+              
         session.setAttribute("nombreUsuario", nombreCompletoUsario);
         session.setAttribute("fotoUsuario", fotoRegistradaUsuario);
         response.sendRedirect("registro_exitoso.jsp");
