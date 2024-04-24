@@ -5,6 +5,7 @@
 package logicadeintegracion;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,14 +30,23 @@ public class SvAudio extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String texto = (String) session.getAttribute("descripcionTextoCompleto");
-        TextoToSpeech1 textToSpeach=new TextoToSpeech1();
-        textToSpeach.hablar(texto);
-        response.sendRedirect("tematicasRegistradas.jsp");
-    }
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    HttpSession session = request.getSession();
+    String texto = (String) session.getAttribute("descripcionTextoCompleto");
+    TextoToSpeech1 textToSpeech = new TextoToSpeech1();
+    byte[] audioBytes = textToSpeech.text_to_speech(texto);
+    
+    // Configurar la respuesta para enviar el audio
+    response.setContentType("audio/mpeg");
+    response.setContentLength(audioBytes.length);
+    
+    // Enviar los datos del audio como un flujo de salida
+    OutputStream out = response.getOutputStream();
+    out.write(audioBytes);
+    out.flush();
+    out.close();
+}
 
 
     @Override
