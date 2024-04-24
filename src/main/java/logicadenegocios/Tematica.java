@@ -15,7 +15,7 @@ public class Tematica implements ITematica{
     private String descripcionTematica;
     private String fotoTematica;
     private String idTematica;
-    private Map<String, String> textosMostrados; // Mapa para almacenar texto con su ID
+    private Map<String, String> textosMostrados; 
     private List<Map<String, Object>> textos;
     
     private ArrayList<String> textosA=new ArrayList<>();//NO QUITAR NO FUNCIONA PERO SE CAE 
