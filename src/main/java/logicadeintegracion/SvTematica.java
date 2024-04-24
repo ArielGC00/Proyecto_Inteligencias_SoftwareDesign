@@ -31,6 +31,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class SvTematica extends HttpServlet {
     
     Usuario usuario;
+   
     private static final long serialVersionUID = 1L;
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -105,7 +106,7 @@ public class SvTematica extends HttpServlet {
                         if (existingFile.exists()) {
                             // Si el archivo ya existe, mostrar un mensaje de error y redirigir a una página de error
                             request.setAttribute("mensajeError", "La imagen seleccionada ya fue utilizada, seleccione una diferente.");
-                            RequestDispatcher dispatcher = request.getRequestDispatcher("registro_exitoso.jsp");
+                            RequestDispatcher dispatcher = request.getRequestDispatcher("registroTematicasHtml.jsp");
                             dispatcher.forward(request, response);
                             return; // Salir del método doPost() para evitar que se guarde la temática
                         }
@@ -119,7 +120,7 @@ public class SvTematica extends HttpServlet {
                         nuevaTematica.guardarTematica(usuario.getId());
 
                         // Redireccionar después de guardar exitosamente
-                        response.sendRedirect("registro_exitoso.jsp");
+                        response.sendRedirect("registroTematicasHtml.jsp");
                         return;
                     }
                 }
