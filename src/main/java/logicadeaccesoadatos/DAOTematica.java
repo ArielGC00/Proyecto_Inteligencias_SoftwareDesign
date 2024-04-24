@@ -26,6 +26,7 @@ public class DAOTematica implements IDAOTematica{
     // Crear un mapa para almacenar los datos de la temática
     private Map<String, Object> tematicaData = new HashMap<>();
     private static final String RUTA_ARCHIVO = "/tematicas.json";
+     String hola="hola";
     
     //Metodo agregar Tematicas
     @Override
