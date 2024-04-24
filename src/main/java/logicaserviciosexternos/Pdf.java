@@ -7,12 +7,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 public class Pdf {
     private static final String RUTA_FUENTE_HTML = "/htmlPdf.html";
     private static final String RUTA_OUTPUT_PDF = "/outputPdf.pdf";
-    private static final String RUTA_IMAGEN_WORDCLOUD = "/wordCloudImage.png";
     
     public Pdf() {
     
