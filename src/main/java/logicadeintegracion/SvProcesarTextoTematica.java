@@ -66,6 +66,14 @@ public class SvProcesarTextoTematica extends HttpServlet {
         session.setAttribute("fechaTextoSeleccionadoCompleto", fechaHora);
         session.setAttribute("descripcionTextoCompleto", descripcionTexto);
         asignarSentimientoText0(sentimientoTexto,session,descripcionTexto);
+        
+        session.setAttribute("palabrasClaveTexto", null);
+        session.setAttribute("ideaPrincipalTexto", null);
+        session.setAttribute("opinionIdea", null);
+        session.setAttribute("opinionPalabras", null);
+        session.setAttribute("wordCloudImage", null);
+        
+        
         //session.setAttribute("sentimientoTextoCompleto", sentimientoTexto);
 
         // Redireccionar a la página para mostrar el texto seleccionado
