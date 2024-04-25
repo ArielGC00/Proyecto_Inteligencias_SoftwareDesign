@@ -33,6 +33,7 @@ public class Traductor {
 
 
   public static String traducirTexto(String pTexto) {
+      //sk-proj-xMLX90T8da3jSKfcfD5iT3BlbkFJbigyGy1pn4inhK7s8gWb
     String key="";
     String url = "https://api.openai.com/v1/chat/completions";
     String model = "gpt-3.5-turbo";
