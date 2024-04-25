@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+import java.util.TimeZone;
 import logicadeaccesoadatos.DAOTexto;
 import logicadeintegraciondeia.Sentimiento;
 /**
@@ -33,15 +34,19 @@ public class Texto implements ITexto{
         
     }
     
-    //Método para registrar la fecha y hora en que se crea el texto
-    private String asignarFechaHora(){
-        // Obtener la fecha y hora 
-        Date fechaHoraActual = new Date(); 
-        // Crear un formato para la fecha y hora
+private String asignarFechaHora(){
+        Date fechaHoraActual = new Date();
+
+        // Establecer la zona horaria a Costa Rica
+        TimeZone zonaHorariaCR = TimeZone.getTimeZone("America/Costa_Rica");
+
+        // Crear un formato para la fecha y hora y establecer la zona horaria
         SimpleDateFormat formatoFechaHora = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-        
+        formatoFechaHora.setTimeZone(zonaHorariaCR);
+
         // Formatear la fecha y hora actual como una cadena
         fechaHora = formatoFechaHora.format(fechaHoraActual);
+
         return fechaHora;
     }
     
