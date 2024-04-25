@@ -17,7 +17,8 @@ import javazoom.jl.player.Player;
 
 
 public class TextoToSpeech1 {
-  private static final String apiKey = "sk-proj-q4Chv08pOs5IwY8XQAPDT3BlbkFJTsGQX8r0N0oHejha4A3r";
+    //sk-proj-xMLX90T8da3jSKfcfD5iT3BlbkFJbigyGy1pn4inhK7s8gWb
+  private static final String apiKey = "";
   
   public static byte[] text_to_speech(String texto) {
     try {
